@@ -1,1 +1,26 @@
+.wrapper_grafici, .wrapper_selettori {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.wrapper_grafici{
+  height: 600px;
+}
+.wrapper_selettori{
+  height: 100px;
+}
+.torta {
+  width: 300px;
+  height: 300px;
+}
 
+.linea {
+  width: 600px;
+  height: 300px;
+}
+
+.select_month, .select_seller, #input_vendita, #mybutton {
+  width: 200px;
+  height: 50px;
+  font-size: 15px;
+}

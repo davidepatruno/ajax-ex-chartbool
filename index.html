@@ -4,11 +4,25 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <title>boolchart</title>
   </head>
   <body>
-    <canvas class="test-boolean" width="200" height="200"></canvas>
+    <div class="wrapper_selettori">
+      <select class="select_seller"></select>
+      <select class="select_month" ></select>
+      <input id="input_vendita" type="text" placeholder="inserisci importo vendita">
+      <button id="mybutton" type="button">Aggiungi vendita</button>
+    </div>
+    <div class="wrapper_grafici">
+      <div class="torta">
+        <canvas id="pie"></canvas>
+      </div>
+      <div class="linea">
+        <canvas id="line"></canvas>
+      </div>
+    </div>
 
     <script src="main.js"></script>
 
