@@ -29,8 +29,6 @@ $(document).ready(function(){
       },
       success: function(data){
         alert("Vendita inserita con successo");
-        processPie(data);
-        processLine(data);
       },
       error: function(err){
         alert("La vendita non è stata inserita per un errore");
@@ -60,7 +58,7 @@ $(document).ready(function(){
       var originalDate = venditaSingola.date;
       var momentDate = moment(originalDate, "DD/MM/YYYY");
       var mese = momentDate.format('MMMM');
-      oggettoMesi[mese] += ammontareVendita;
+      oggettoMesi[mese] += parseInt(ammontareVendita);
     };
 
     arrayAmmVendMesi = [];
@@ -98,8 +96,8 @@ $(document).ready(function(){
       if (oggettoVenditeAgenti[venditore] == undefined){
         oggettoVenditeAgenti[venditore] = 0;
       }
-      oggettoVenditeAgenti[venditore] += ammontareVendita;
-      fatturatoTotale += ammontareVendita;
+      oggettoVenditeAgenti[venditore] += parseInt(ammontareVendita);
+      fatturatoTotale += parseInt(ammontareVendita);
       // console.log(data);
       // console.log(oggettoVenditeAgenti);
       // console.log(fatturatoTotale);;
@@ -112,7 +110,7 @@ $(document).ready(function(){
       var percentualeFatturato = oggettoVenditeAgenti[chiave] / fatturatoTotale *100;
       arrayVenditori.push(chiave);
       arrayVendite.push(percentualeFatturato.toFixed(2));
-      // console.log(venditaTotaleAgenti[chiave]);
+      // console.log(arrayVendite);
     }
     var myPieChart = new Chart($('#pie'),{
       type: 'pie',
