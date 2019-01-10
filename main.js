@@ -5,26 +5,33 @@ $(document).ready(function(){
     method: 'GET',
     success: function(data){
       var venditaTotaleAgenti = {};
+      var fatturatoTotale = 0;
       for (var i=0; i < data.length; i++){
         var venditaSingola = data[i];
-        if (venditaTotaleAgenti[venditaSingola.salesman] == undefined){
-          venditaTotaleAgenti[venditaSingola.salesman] = 0;
+        var venditore = venditaSingola.salesman;
+        var ammontareVendita = venditaSingola.amount;
+        if (venditaTotaleAgenti[venditore] == undefined){
+          venditaTotaleAgenti[venditore] = 0;
         }
-        venditaTotaleAgenti[venditaSingola.salesman] += venditaSingola.amount;
-        // console.log(venditaTotaleAgenti);
+        venditaTotaleAgenti[venditore] += ammontareVendita;
+        fatturatoTotale += ammontareVendita;
+        console.log(venditaTotaleAgenti);
+        // console.log(fatturatoTotale);;
 
       }
       var arrayVenditori = [];
-      var arrayAmmontareVendite = [];
+      var arrayVendite = [];
       for ( var chiave in venditaTotaleAgenti){
+        var percentualeFatturato = venditaTotaleAgenti[chiave] / fatturatoTotale *100;
         arrayVenditori.push(chiave);
-        arrayAmmontareVendite.push(venditaTotaleAgenti[chiave]);
+        arrayVendite.push(percentualeFatturato.toFixed(2));
+        // console.log(venditaTotaleAgenti[chiave]);
       }
       var myPieChart = new Chart($('.test-boolean'),{
         type: 'pie',
         data: {
           datasets: [{
-              data: arrayAmmontareVendite,
+              data: arrayVendite,
               labels: arrayVenditori,
               backgroundColor: [
                'rgba(255, 99, 132)',
