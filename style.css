@@ -19,7 +19,7 @@
   height: 300px;
 }
 
-.select_month, .select_seller, #input_vendita, #mybutton {
+.select_date, .select_seller, #input_vendita, #mybutton {
   width: 200px;
   height: 50px;
   font-size: 15px;

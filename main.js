@@ -1,33 +1,21 @@
-var selettoreMese = $('.select_month');
 var selettoreVenditore = $('.select_seller');
 var bottone = $('#mybutton');
 var inserisciVendita = $('#input_vendita');
 $(document).ready(function(){
-  $.ajax({
-    url: 'http://157.230.17.132:4010/sales',
-    method: 'GET',
-    success: function(data){
-      processPie(data);
-      processLine(data);
-    },
-    error: function(err){
-      alert("qualcosa non va");
-    }
-  })
-
+  init();
   $('#mybutton').click(function(){
-    var meseScelto = selettoreMese.val();
-    var meseMoment = moment(meseScelto, "MMMM");
-    var dataInput = meseMoment.format('01/MM/2017');
+    var selettoreData = $('.select_date').val();
+    var dataScelta = moment(selettoreData).format('DD/MM/YYYY');
     $.ajax({
       url: 'http://157.230.17.132:4010/sales',
       method: 'POST',
       data: {
         salesman: selettoreVenditore.val(),
         amount: inserisciVendita.val(),
-        date: dataInput,
+        date: dataScelta,
       },
       success: function(data){
+        init();
         alert("Vendita inserita con successo");
       },
       error: function(err){
@@ -35,6 +23,21 @@ $(document).ready(function(){
       }
     })
   });
+
+
+  function init(){
+    $.ajax({
+      url: 'http://157.230.17.132:4010/sales',
+      method: 'GET',
+      success: function(data){
+        processPie(data);
+        processLine(data);
+      },
+      error: function(err){
+        alert("qualcosa non va");
+      }
+    })
+  }
 
   function processLine(results){
     var oggettoMesi = {
@@ -65,7 +68,6 @@ $(document).ready(function(){
     arrayMesi = [];
 
     for (var mese in oggettoMesi) {
-      selettoreMese.append('<option value="' + mese +'">' + mese + '</option>');
       arrayAmmVendMesi.push(oggettoMesi[mese]);
       arrayMesi.push(mese);
     };
